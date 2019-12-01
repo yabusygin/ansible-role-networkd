@@ -1,2 +1,5 @@
 ---
-# handlers file for networkd
+- name: reload networkd
+  systemd:
+    name: systemd-networkd.service
+    state: restarted
