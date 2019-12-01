@@ -8,8 +8,27 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
-    box: ubuntu/xenial64
+- name: gateway
+  box: debian/stretch64
+  interfaces:
+  - network_name: private_network
+    virtualbox__intnet: "test-networkd-inside"
+    auto_config: false
+  - network_name: private_network
+    virtualbox__intnet: "test-networkd-outside"
+    auto_config: false
+- name: inside
+  box: debian/stretch64
+  interfaces:
+  - network_name: private_network
+    virtualbox__intnet: "test-networkd-inside"
+    auto_config: false
+- name: outside
+  box: debian/stretch64
+  interfaces:
+  - network_name: private_network
+    virtualbox__intnet: "test-networkd-outside"
+    auto_config: false
 provisioner:
   name: ansible
   lint:
