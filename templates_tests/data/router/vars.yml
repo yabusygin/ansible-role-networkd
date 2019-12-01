@@ -1,0 +1,11 @@
+---
+networkd_current_iface: eth0
+networkd:
+  ifaces:
+  - name: eth0
+    address: 192.168.0.1/24
+    routes:
+    - dest: 172.16.0.0/16
+      next_hop: 192.168.0.3
+    - default: 192.168.0.2
+  ip_forwarding: ipv4
