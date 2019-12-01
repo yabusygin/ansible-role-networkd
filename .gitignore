@@ -1,0 +1,6 @@
+.vagrant/
+
+*.retry
+
+__pycache__/
+.venv/
