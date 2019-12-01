@@ -1,0 +1,41 @@
+{% set iface = networkd.ifaces|selectattr("name", "equalto", networkd_current_iface)|first -%}
+
+[Match]
+Name={{ iface.name }}
+{% if iface.address is defined %}
+    {% if iface.address is string %}
+
+[Address]
+Address={{ iface.address }}
+    {% elif iface.address is iterable %}
+        {% for address in iface.address %}
+
+[Address]
+Address={{ address }}
+        {% endfor %}
+    {% endif %}
+{% endif %}
+{% if iface.network is defined or networkd.ip_forwarding is defined %}
+
+[Network]
+    {% if iface.network is defined %}
+        {% if iface.network.dhcp is defined %}
+DHCP={{ iface.network.dhcp }}
+        {% endif %}
+    {% endif %}
+    {% if networkd.ip_forwarding is defined %}
+IPForward={{ networkd.ip_forwarding }}
+    {% endif %}
+{% endif %}
+{% if iface.routes is defined %}
+    {% for route in iface.routes %}
+
+[Route]
+        {% if route.default is defined %}
+Gateway={{ route.default }}
+        {% else %}
+Destination={{ route.dest }}
+Gateway={{ route.next_hop }}
+        {% endif %}
+    {% endfor %}
+{% endif %}

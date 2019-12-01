@@ -1,2 +1,26 @@
 ---
-# tasks file for networkd
+- name: Configure loopback
+  copy:
+    src: interfaces
+    dest: /etc/network/interfaces
+    mode: 0644
+
+- name: Configure ifaces
+  template:
+    src: iface.network.j2
+    dest: "/etc/systemd/network/{{ iface.name }}.network"
+    mode: 0644
+    lstrip_blocks: yes
+  loop: "{{ networkd.ifaces }}"
+  loop_control:
+    loop_var: iface
+  vars:
+    networkd_current_iface: "{{ iface.name }}"
+  notify:
+  - reload networkd
+
+- name: Enable networkd
+  systemd:
+    name: systemd-networkd.service
+    enabled: yes
+    state: started
