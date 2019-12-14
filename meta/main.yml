@@ -3,3 +3,4 @@ galaxy_info:
   author: Alexey Busygin
   description: An Ansible role configuring systemd-networkd.
   license: MIT
+  min_ansible_version: 2.7
