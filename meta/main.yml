@@ -1,0 +1,5 @@
+galaxy_info:
+  role_name: networkd
+  author: Alexey Busygin
+  description: An Ansible role configuring systemd-networkd.
+  license: MIT
