@@ -2,6 +2,6 @@
 networkd_current_iface: eth0
 networkd:
   ifaces:
-  - name: eth0
-    network:
-      dhcp: ipv4
+    - name: eth0
+      network:
+        dhcp: ipv4

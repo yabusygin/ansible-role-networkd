@@ -17,7 +17,7 @@
   vars:
     networkd_current_iface: "{{ iface.name }}"
   notify:
-  - reload networkd
+    - reload networkd
 
 - name: Enable networkd
   systemd:
