@@ -1,0 +1,1 @@
+"""DHCP configured interface."""
