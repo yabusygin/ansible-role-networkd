@@ -1,4 +1,12 @@
 ---
+- name: Create ifup/ifdown config directory
+  file:
+    path: /etc/network
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - name: Configure loopback
   copy:
     src: interfaces
