@@ -10,8 +10,12 @@ galaxy_info:
       versions:
         - buster
         - stretch
-        - jessie
     - name: Ubuntu
       versions:
         - bionic
         - xenial
+  galaxy_tags:
+    - system
+    - networking
+    - systemd
+    - networkd
